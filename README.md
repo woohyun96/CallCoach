@@ -20,7 +20,7 @@ Access currently follows the site's hosting policy, so the deployment may requir
 - Combines available modalities into a confidence-aware stress-like score from `0` to `100`.
 - Smooths the score over time and records a rolling 60-second session history.
 - Suggests a reset after sustained high activation when automatic prompts are enabled.
-- Provides forest, ocean, and rain soundscapes with a `4��2��6` breathing rhythm.
+- Provides forest, ocean, and rain soundscapes with a `4–2–6` breathing rhythm.
 - Exports the current session summary, transcript, and score samples as JSON.
 
 ## Multimodal analysis
@@ -38,15 +38,15 @@ flowchart TD
     G --> H[Nature reset suggestion]
 ```
 
-### Face signal �� 40%
+### Face signal — 40%
 
 The browser loads MediaPipe Face Landmarker and analyzes a single face at roughly 10 frames per second. The prototype combines brow movement, eye tension, eye widening, jaw opening, lip pressure, frowning, and smiling. Facial measurements are compared with the short baseline collected at the start of the session.
 
-### Voice signal �� 35%
+### Voice signal — 35%
 
 The Web Audio API analyzes the microphone waveform locally. Autocorrelation estimates fundamental frequency, while a rolling window captures pitch variability. RMS energy provides an intensity estimate, and finalized transcript words provide an approximate words-per-minute value. The resulting score reflects changes in pitch, energy, variability, and pace relative to the baseline.
 
-### Language signal �� 25%
+### Language signal — 25%
 
 The app combines the live English transcript with optional manual input. A lightweight lexical heuristic looks for pressure-related and calming terms, repeated punctuation, and cue density. This is intentionally transparent and should not be treated as a semantic or clinical language model.
 
@@ -72,9 +72,9 @@ $$
 
 Scores are presented as observational ranges, not diagnoses:
 
-- `0��39`: steady
-- `40��69`: moderate
-- `70��100`: high
+- `0–39`: steady
+- `40–69`: moderate
+- `70–100`: high
 
 ## Guided intervention
 
@@ -150,16 +150,16 @@ The MediaPipe WASM bundle and face-landmarker model are loaded from external CDN
 
 ```text
 callcoach-live/
-�쒋��� app/
-��   �쒋��� globals.css       # Observatory UI, responsive layout, nature scenes
-��   �쒋��� layout.tsx        # Document metadata and root layout
-��   �붴��� page.tsx          # Capture, analysis, fusion, intervention, and export
-�쒋��� public/               # Static assets
-�쒋��� scripts/              # Install, build, and artifact-validation helpers
-�쒋��� tests/                # Rendered application checks
-�쒋��� worker/               # Cloudflare-compatible runtime entry
-�쒋��� package.json
-�붴��� README.md
+├── app/
+│   ├── globals.css       # Observatory UI, responsive layout, nature scenes
+│   ├── layout.tsx        # Document metadata and root layout
+│   └── page.tsx          # Capture, analysis, fusion, intervention, and export
+├── public/               # Static assets
+├── scripts/              # Install, build, and artifact-validation helpers
+├── tests/                # Rendered application checks
+├── worker/               # Cloudflare-compatible runtime entry
+├── package.json
+└── README.md
 ```
 
 ## Browser notes
